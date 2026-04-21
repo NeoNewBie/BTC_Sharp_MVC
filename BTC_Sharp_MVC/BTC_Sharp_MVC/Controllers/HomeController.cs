@@ -1,8 +1,9 @@
 using BTC_Sharp_MVC.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+using System;
+using BTC_Sharp_MVC.Models;
 
-namespace BTC_Sharp_MVC.Controllers
+namespace UniversityManager.Controllers
 {
     public class HomeController : Controller
     {
@@ -11,15 +12,21 @@ namespace BTC_Sharp_MVC.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        // Action xử lý yêu cầu hiển thị Sinh viên
+        public IActionResult StudentInfo()
         {
-            return View();
-        }
+            // Bước 1: Khởi tạo Model Student và gán giá trị (Hardcode theo yêu cầu demo)
+            // Trong thực tế, bạn sẽ dùng ApplicationDbContext để query từ Database (vd: _context.Students.Find(id))
+            var studentModel = new Student
+            {
+                StudentId = 2026001,
+                FullName = "Quốc Nguyễn",
+                DateOfBirth = new DateTime(2006, 12, 18),
+                Email = "quoc.nguyen@university.edu.vn"
+            };
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            // Bước 2: Truyền Model vào View
+            return View(studentModel);
         }
     }
 }

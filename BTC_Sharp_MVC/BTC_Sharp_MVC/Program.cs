@@ -1,8 +1,20 @@
+
+using Microsoft.EntityFrameworkCore;
+using BTC_Sharp_MVC;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+
+// Lấy connection string
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// Đăng ký ApplicationDbContext
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

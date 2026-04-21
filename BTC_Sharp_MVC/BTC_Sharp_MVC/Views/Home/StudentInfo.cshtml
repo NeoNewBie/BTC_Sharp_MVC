@@ -1,0 +1,24 @@
+﻿@model BTC_Sharp_MVC.Models.Student
+
+@{
+    ViewData["Title"] = "Thông tin Sinh viên";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary">Thông tin chi tiết Sinh viên</h2>
+    <hr />
+    
+    <div class="card shadow-sm" style="width: 25rem;">
+        <div class="card-body">
+            <h5 class="card-title">@Model.FullName</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Mã SV: @Model.StudentId</h6>
+            
+            <p class="card-text">
+                <strong>Ngày sinh:</strong> @Model.DateOfBirth.ToString("dd/MM/yyyy") <br />
+                <strong>Email:</strong> @Model.Email
+            </p>
+            
+            <a href="/" class="card-link btn btn-secondary btn-sm">Quay lại trang chủ</a>
+        </div>
+    </div>
+</div>
